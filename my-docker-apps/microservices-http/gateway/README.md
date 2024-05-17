@@ -1,0 +1,2 @@
+This "microservice" is the API gateway for a microservice application.
+It serves as an entry point for requests that are dispatched to another microservice. When it recieves the response from the microservice a response is sent back (initial request).
