@@ -1,17 +1,21 @@
-version: '1.0'
+version: '3.8'
+
 services:
-  gateway:
+  main:
     build: 
-      context: ./gateway
+      context: ./main
       dockerfile: Dockerfile
     ports:
       - "5000:5000"
     depends_on:
       - microservice
+    environment:
+      - MICROSERVICE_URL=http://microservice:5050/
+      - LOCALHOST_URL = http://localhost:5050/
       
   microservice:
     build:
       context: ./microservice
       dockerfile: Dockerfile
     ports:
-      - "6000:6000"
+      - "5050:5050"
