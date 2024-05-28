@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  gateway:
+    build: 
+      context: ./gateway
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    depends_on:
+      - microservice
+    networks:
+      - internal_net
+    environment:
+      - MICROSERVICE_URL=http://microservice:6000/
+
+  microservice:
+    build:
+      context: ./microservice
+      dockerfile: Dockerfile
+    networks:
+      - internal_net
+
+networks:
+  internal_net:
+    driver: bridge
